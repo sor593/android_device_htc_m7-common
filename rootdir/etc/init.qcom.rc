@@ -159,6 +159,9 @@ on init
     # Touchscreen
     chown system system /sys/class/leds/button-backlight/currents
 
+    chown root system /sys/android_touch/keypad_enable
+    chmod 0660 /sys/android_touch/keypad_enable
+
     # LED Indicator
     chown system system /sys/class/leds/indicator/ModeRGB
 
