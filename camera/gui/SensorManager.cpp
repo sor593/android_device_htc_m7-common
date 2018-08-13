@@ -28,8 +28,10 @@
 #include <binder/IBinder.h>
 #include <binder/IServiceManager.h>
 
-#include <sensor/ISensorEventConnection.h>
+#include <gui/SensorManager.h>
+
 #include <sensor/ISensorServer.h>
+#include <sensor/ISensorEventConnection.h>
 #include <sensor/Sensor.h>
 #include <sensor/SensorEventQueue.h>
 
