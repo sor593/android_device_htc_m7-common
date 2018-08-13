@@ -35,6 +35,14 @@
 
 const char KEY_VIDEO_HDR[] = "video-hdr";
 const char KEY_VIDEO_HDR_VALUES[] = "video-hdr-values";
+const char KEY_CAPTURE_MODE[] = "capture-mode";
+const char KEY_FACE_DETECTION[] = "face-detection";
+const char KEY_SUPPORTED_DENOISE[] = "denoise-values";
+const char KEY_CONTIBURST_TYPE[] = "contiburst-type";
+const char KEY_OIS_SUPPORT[] = "ois_support";
+const char KEY_OIS_MODE[] = "ois_mode";
+const char KEY_ZSL[] = "zsl";
+const char KEY_CAMERA_MODE[] = "camera-mode";
 
 // Wrapper common specific parameters names
 const char KEY_CAPTURE_MODE[] = "capture-mode";
