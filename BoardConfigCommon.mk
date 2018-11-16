@@ -82,6 +82,29 @@ TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
+LZMA_RAMDISK_TARGETS := recovery
+
+#TWRP config:
+DEVICE_RESOLUTION := 1080x1920
+TW_THEME := portrait_hdpi
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_DUMLOCK := true
+TW_USE_TOOLBOX := true
+TW_USE_TOYBOX := true
+TW_EXCLUDE_SUPERSU := true
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_MAX_BRIGHTNESS := 255
+TW_NO_SCREEN_BLANK := true
+TW_NO_USB_STORAGE := true
+TW_EXTERNAL_STORAGE_PATH := "/usb-otg"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "usb-otg"
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_RECOVERY_BLDRMSG_OFFSET := 2048
+BOARD_HAS_NO_REAL_SDCARD := true
+TARGET_RECOVERY_DEVICE_MODULES := chargeled zip
+ifneq (,$(strip $(wildcard bootable/recovery-twrp/twrp.cpp)))
+RECOVERY_VARIANT := twrp
+endif
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
@@ -90,7 +113,7 @@ BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 # SELinux
 -include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += device/htc/m7-common/sepolicy
+#BOARD_SEPOLICY_DIRS += device/htc/m7-common/sepolicy
 
 # Wifi
 BOARD_HOSTAPD_DRIVER             := NL80211
