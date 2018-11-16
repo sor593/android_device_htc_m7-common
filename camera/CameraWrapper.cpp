@@ -44,21 +44,7 @@ const char KEY_OIS_MODE[] = "ois_mode";
 const char KEY_ZSL[] = "zsl";
 const char KEY_CAMERA_MODE[] = "camera-mode";
 
-// Wrapper common specific parameters names
-const char KEY_CAPTURE_MODE[] = "capture-mode";
-const char KEY_FACE_DETECTION[] = "face-detection";
-const char KEY_SUPPORTED_DENOISE[] = "denoise-values";
-const char KEY_CONTIBURST_TYPE[] = "contiburst-type";
-const char KEY_OIS_SUPPORT[] = "ois_support";
-const char KEY_OIS_MODE[] = "ois_mode";
-const char KEY_ZSL[] = "zsl";
-const char SCENE_MODE_HDR[] = "hdr";
-const char KEY_SCENE_MODE[] = "scene-mode";
-const char KEY_CAMERA_MODE[] = "camera-mode";
-
-using namespace android;
-
-static Mutex gCameraWrapperLock;
+static android::Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
 
 static char **fixed_set_params = NULL;
@@ -128,8 +114,8 @@ static char *camera_fixup_getparams(int id, const char *settings)
     const char *captureMode = "normal";
     const char *videoHdr = "false";
 
-    CameraParameters params;
-    params.unflatten(String8(settings));
+    android::CameraParameters params;
+    params.unflatten(android::String8(settings));
 
 #if !LOG_NDEBUG
     ALOGV("%s: original parameters:", __FUNCTION__);
@@ -187,8 +173,8 @@ static char *camera_fixup_getparams(int id, const char *settings)
 
     /* Set HDR mode */
     if (!strcmp(captureMode, "hdr")) {
-        params.set(KEY_SCENE_MODE,
-                SCENE_MODE_HDR);
+        params.set(android::CameraParameters::KEY_SCENE_MODE,
+                android::CameraParameters::SCENE_MODE_HDR);
     }
 
     /* Set sensor parameters */
@@ -218,8 +204,8 @@ static char *camera_fixup_setparams(int id, const char *settings)
     const char *sceneMode = "auto";
     const char *videoHdr = "false";
 
-    CameraParameters params;
-    params.unflatten(String8(settings));
+    android::CameraParameters params;
+    params.unflatten(android::String8(settings));
 
 #if !LOG_NDEBUG
     ALOGV("%s: original parameters:", __FUNCTION__);
@@ -265,8 +251,8 @@ static char *camera_fixup_setparams(int id, const char *settings)
         params.set(KEY_OIS_MODE, "off");
 
         /* Enable HDR */
-        if (!strcmp(sceneMode, SCENE_MODE_HDR)) {
-            params.set(KEY_SCENE_MODE, "off");
+        if (!strcmp(sceneMode, android::CameraParameters::SCENE_MODE_HDR)) {
+            params.set(android::CameraParameters::KEY_SCENE_MODE, "off");
             params.set(KEY_CAPTURE_MODE, "hdr");
         } else {
             params.set(KEY_CAPTURE_MODE, "normal");
