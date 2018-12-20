@@ -56,6 +56,9 @@ BOARD_HARDWARE_CLASS := $(LOCAL_PATH)/lineagehw
 # Charger
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/htc_lpm/lpm_mode
 
+# Dependencies
+ALLOW_MISSING_DEPENDENCIES=true
+
 # Filesystem
 BOARD_BOOTIMAGE_PARTITION_SIZE := 16777216
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -114,7 +117,7 @@ BOARD_PROVIDES_LIBRIL := true
 BOARD_RIL_CLASS := ../../../$(LOCAL_PATH)/ril
 
 # SELinux
--include device/qcom/sepolicy/sepolicy.mk
+#-include device/qcom/sepolicy/sepolicy.mk
 
 #BOARD_SEPOLICY_DIRS += device/htc/m7-common/sepolicy
 
